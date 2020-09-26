@@ -12,5 +12,5 @@ export default combineReducers({
   common,
   editor,
   home,
-  router: routerReducer
+  router: routerReducer,
 });

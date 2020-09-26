@@ -10,19 +10,19 @@ import Home from '../components/Home';
 import { store } from '../store';
 import { push } from 'react-router-redux';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     appLoaded: state.common.appLoaded,
     appName: state.common.appName,
     currentUser: state.common.currentUser,
-    redirectTo: state.common.redirectTo
-  }};
+    redirectTo: state.common.redirectTo,
+  };
+};
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   onLoad: (payload, token) =>
     dispatch({ type: APP_LOAD, payload, token, skipTracking: true }),
-  onRedirect: () =>
-    dispatch({ type: REDIRECT })
+  onRedirect: () => dispatch({ type: REDIRECT }),
 });
 
 class App extends React.Component {
@@ -49,13 +49,14 @@ class App extends React.Component {
         <div>
           <Header
             appName={this.props.appName}
-            currentUser={this.props.currentUser} />
-            <Switch>
-            <Route exact path="/" component={Home}/>
+            currentUser={this.props.currentUser}
+          />
+          <Switch>
+            <Route exact path="/" component={Home} />
             <Route path="/editor/:slug" component={Editor} />
             <Route path="/editor" component={Editor} />
             <Route path="/article/:id" component={Article} />
-            </Switch>
+          </Switch>
         </div>
       );
     }
@@ -63,7 +64,8 @@ class App extends React.Component {
       <div>
         <Header
           appName={this.props.appName}
-          currentUser={this.props.currentUser} />
+          currentUser={this.props.currentUser}
+        />
       </div>
     );
   }
