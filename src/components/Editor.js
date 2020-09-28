@@ -64,7 +64,7 @@ class Editor extends React.Component {
     };
   }
 
-  async componentWillReceiveProps(nextProps) {
+  async UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.match.params.id !== nextProps.match.params.id) {
       if (nextProps.match.params.id) {
         this.props.onUnload();
@@ -76,7 +76,7 @@ class Editor extends React.Component {
     }
   }
 
-  async componentWillMount() {
+  async UNSAFE_componentWillMount() {
     if (this.props.match.params.id) {
       return this.props.onLoad(
         await api.Articles.get(this.props.match.params.id)

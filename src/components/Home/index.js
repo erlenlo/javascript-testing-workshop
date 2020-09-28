@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Home extends React.Component {
-  async componentWillMount() {
+  async componentDidMount() {
     const tab = 'all';
     const articlesPromise = api.Articles.all;
 

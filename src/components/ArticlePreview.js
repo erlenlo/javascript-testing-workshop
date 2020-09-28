@@ -53,11 +53,11 @@ const ArticlePreview = ({
     }
   };
 
-  const details = (event) => {
+  const details = () => {
     history.push(`/article/${article.id}`);
   };
 
-  const del = async (event) => {
+  const del = async () => {
     onClickDelete(await api.Articles.del(article.id));
   };
 

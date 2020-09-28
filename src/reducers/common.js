@@ -28,8 +28,7 @@ export default (state = initialState, action) => {
       setUser(user);
       return { ...state, currentUser: user, redirectTo: '/' };
     case ARTICLE_SUBMITTED:
-      const redirectUrl = '/';
-      return { ...state, redirectTo: redirectUrl };
+      return { ...state, redirectTo: '/' };
     case DELETE_ARTICLE:
       return { ...state, redirectTo: '/' };
     default:
