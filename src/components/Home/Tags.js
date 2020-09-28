@@ -17,14 +17,13 @@ const Tags = (props) => {
           };
 
           return (
-            <a
-              href=""
+            <button
               className="tag-default tag-pill"
               key={tag}
               onClick={handleClick}
             >
               {tag}
-            </a>
+            </button>
           );
         })}
       </div>

@@ -30,7 +30,7 @@ Nå skal nettsiden være tilgjengelig på <a href="http://localhost:4100">http:/
 
 ## Oppgave 1
 
-Cypress er et rammeverk for å skrive ende-til-ende-tester i JavaScript. Cypress er allerede installert i dette prosjektet her og klart til å tas i bruk, men for et nytt prosjekt er det ikke verre enn å skrive `npm install --save-dev cypress`.
+Cypress er et rammeverk for å skrive ende-til-ende-tester i JavaScript. Cypress er allerede installert i dette prosjektet her og klart til bruk, men for et nytt prosjekt er det ikke verre enn å skrive `npm install --save-dev cypress`.
 
 Fra før av har vi lagt til en Cypress-test. Denne finner du i `cypress/e2e`-mappa. Testen er skrevet riktig, men den feiler! Argg! Din første oppgave er å finne og rette opp i feilen i React-koden, slik at testen blir grønn.
 
@@ -40,7 +40,7 @@ La oss begynne med å kjøre Cypress-testene. For å starte Cypress skriver du
 npm run cypress
 ```
 
-Cypress-testene krever at nettsiden allerede kjører, så bruk gjerne to terminalvinduer der du kjører `npm start` i det ene og `npm run cypress` i det andre. Da skal du få opp et Cypress-vindu. Trykk på knappen "Run all specs". Da skal testen "fremtidig testnavn her" kjøre men feile.
+Cypress-testene krever at nettsiden allerede kjører, så bruk gjerne to terminalvinduer der du kjører `npm start` i det ene og `npm run cypress` i det andre. Da skal du få opp et Cypress-vindu. Trykk på knappen "Run all specs". Da skal testen "fremtidig testnavn her" kjøre, men feile.
 
 For å finne feilen er det lurt å begynne med å kikke på testkoden. Når testen har blitt grønn kan du gå videre til neste oppgave.
 

@@ -24,22 +24,29 @@ const mapDispatchToProps = (dispatch) => ({
   onRedirect: () => dispatch({ type: REDIRECT }),
 });
 
-const App = (props) => {
+const App = ({
+  onLoad,
+  redirectTo,
+  onRedirect,
+  history,
+  appLoaded,
+  appName,
+}) => {
   useEffect(() => {
-    props.onLoad(null);
-  }, []);
+    onLoad(null);
+  }, [onLoad]);
 
   useEffect(() => {
-    if (props.redirectTo) {
-      props.history.push(props.redirectTo);
-      props.onRedirect();
+    if (redirectTo) {
+      history.push(redirectTo);
+      onRedirect();
     }
-  }, [props.redirectTo]);
+  }, [redirectTo, history, onRedirect]);
 
-  if (props.appLoaded) {
+  if (appLoaded) {
     return (
       <React.Fragment>
-        <Header appName={props.appName} />
+        <Header appName={appName} />
         <Switch>
           <PrivateRoute exact path="/" component={Home} />
           <PrivateRoute exact path="/editor/:id" component={Editor} />
@@ -52,7 +59,7 @@ const App = (props) => {
   }
   return (
     <div>
-      <Header appName={props.appName} />
+      <Header appName={appName} />
     </div>
   );
 };

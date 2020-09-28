@@ -9,7 +9,6 @@ export const REMOVE_TAG = 'REMOVE_TAG';
 export const APPLY_TAG_FILTER = 'APPLY_TAG_FILTER';
 export const SET_PAGE = 'SET_PAGE';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
-export const CHANGE_TAB = 'CHANGE_TAB';
 export const HOME_PAGE_LOADED = 'HOME_PAGE_LOADED';
 export const HOME_PAGE_UNLOADED = 'HOME_PAGE_UNLOADED';
 export const ARTICLE_PAGE_LOADED = 'ARTICLE_PAGE_LOADED';

@@ -25,5 +25,10 @@
     "react/prop-types": "off",
     "react-hooks/exhaustive-deps": "off",
     "no-case-declarations": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
