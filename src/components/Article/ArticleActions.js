@@ -11,14 +11,14 @@ const mapDispatchToProps = (dispatch) => ({
 const ArticleActions = (props) => {
   const article = props.article;
   const del = () => {
-    props.onClickDelete(agent.Articles.del(article.slug));
+    props.onClickDelete(agent.Articles.del(article.id));
   };
   if (props.canModify) {
     return (
       <span>
         <Link
-          to={`/editor/${article.slug}`}
-          className="btn btn-outline-secondary btn-sm"
+          to={`/editor/${article.id}`}
+          className="btn btn-outline-secondary btn-sm mr-2"
         >
           <i className="ion-edit"></i> Edit Article
         </Link>

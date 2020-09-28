@@ -14,7 +14,7 @@ const ArticleList = (props) => {
   return (
     <div>
       {props.articles.map((article) => {
-        return <ArticlePreview article={article} key={article.slug} />;
+        return <ArticlePreview article={article} key={article.id} />;
       })}
 
       <ListPagination

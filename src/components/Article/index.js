@@ -1,5 +1,4 @@
 import ArticleMeta from './ArticleMeta';
-import CommentContainer from './CommentContainer';
 import React from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
@@ -22,10 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
 class Article extends React.Component {
   componentWillMount() {
     this.props.onLoad(
-      Promise.all([
-        agent.Articles.get(this.props.match.params.id),
-        agent.Comments.forArticle(this.props.match.params.id),
-      ])
+      Promise.all([agent.Articles.get(this.props.match.params.id)])
     );
   }
 
@@ -39,11 +35,12 @@ class Article extends React.Component {
     }
 
     const markup = {
-      __html: marked(this.props.article.body, { sanitize: true }),
+      __html: marked(this.props.article.text),
     };
     const canModify =
       this.props.currentUser &&
       this.props.currentUser.username === this.props.article.author.username;
+
     return (
       <div className="article-page">
         <div className="banner">
@@ -59,7 +56,7 @@ class Article extends React.Component {
               <div dangerouslySetInnerHTML={markup}></div>
 
               <ul className="tag-list">
-                {this.props.article.tagList.map((tag) => {
+                {this.props.article.tags.map((tag) => {
                   return (
                     <li className="tag-default tag-pill tag-outline" key={tag}>
                       {tag}
@@ -73,15 +70,6 @@ class Article extends React.Component {
           <hr />
 
           <div className="article-actions"></div>
-
-          <div className="row">
-            <CommentContainer
-              comments={this.props.comments || []}
-              errors={this.props.commentErrors}
-              slug={this.props.match.params.id}
-              currentUser={this.props.currentUser}
-            />
-          </div>
         </div>
       </div>
     );

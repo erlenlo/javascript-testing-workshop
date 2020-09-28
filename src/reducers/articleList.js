@@ -6,6 +6,7 @@ import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
   CHANGE_TAB,
+  DELETE_ARTICLE,
 } from '../constants/actionTypes';
 
 export default (state = {}, action) => {
@@ -15,11 +16,10 @@ export default (state = {}, action) => {
       return {
         ...state,
         articles: state.articles.map((article) => {
-          if (article.slug === action.payload.article.slug) {
+          if (article.id === action.payload.id) {
             return {
               ...article,
-              favorited: action.payload.article.favorited,
-              favoritesCount: action.payload.article.favoritesCount,
+              favoritedBy: action.payload.favoritedBy,
             };
           }
           return article;
@@ -36,8 +36,8 @@ export default (state = {}, action) => {
       return {
         ...state,
         pager: action.pager,
-        articles: action.payload.articles,
-        articlesCount: action.payload.articlesCount,
+        articles: action.payload,
+        articlesCount: action.payload.length,
         tab: null,
         tag: action.tag,
         currentPage: 0,
@@ -46,14 +46,22 @@ export default (state = {}, action) => {
       return {
         ...state,
         pager: action.pager,
-        tags: action.payload[0].tags,
-        articles: action.payload[1].articles,
-        articlesCount: action.payload[1].articlesCount,
+        tags: [],
+        articles: action.payload,
+        articlesCount: action.payload.length,
         currentPage: 0,
         tab: action.tab,
       };
     case HOME_PAGE_UNLOADED:
       return {};
+    case DELETE_ARTICLE:
+      return {
+        ...state,
+        articles: state.articles.filter(
+          (article) => article.id !== action.payload.id
+        ),
+        articlesCount: state.articlesCount - 1,
+      };
     case CHANGE_TAB:
       return {
         ...state,

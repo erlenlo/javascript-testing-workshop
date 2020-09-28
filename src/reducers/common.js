@@ -6,8 +6,9 @@ import {
 } from '../constants/actionTypes';
 
 const initialState = {
-  appName: 'Conduit',
+  appName: 'Scrabbler',
   viewChangeCounter: 0,
+  currentUser: { username: 'foo' },
 };
 
 export default (state = initialState, action) => {
@@ -16,12 +17,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         appLoaded: true,
-        currentUser: action.payload ? action.payload.user : null,
       };
     case REDIRECT:
       return { ...state, redirectTo: null };
     case ARTICLE_SUBMITTED:
-      const redirectUrl = `/article/${action.payload.article.slug}`;
+      const redirectUrl = '/';
       return { ...state, redirectTo: redirectUrl };
     case DELETE_ARTICLE:
       return { ...state, redirectTo: '/' };
