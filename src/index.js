@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import React from 'react';
-import { store, history } from './store';
+import { store, history, getUser } from './store';
 import { ConnectedRouter } from 'connected-react-router';
 import App from './components/App';
 

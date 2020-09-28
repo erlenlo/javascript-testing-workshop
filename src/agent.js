@@ -1,3 +1,5 @@
+import { getUser } from './store';
+
 const API_ROOT = 'https://testing-js-backend.herokuapp.com';
 
 const encode = encodeURIComponent;
@@ -21,8 +23,9 @@ const contentTypeJsonHeader = {
 };
 
 const authorizationHeader = () => {
+  const user = getUser();
   return {
-    Authorization: 'foo',
+    Authorization: user ? user.username : null,
   };
 };
 

@@ -12,6 +12,12 @@ import {
 const FAVORITED_CLASS = 'btn btn-sm btn-primary';
 const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-primary';
 
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.common.currentUser,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => ({
   favorite: (id) =>
     dispatch({
@@ -26,17 +32,24 @@ const mapDispatchToProps = (dispatch) => ({
   onClickDelete: (payload) => dispatch({ type: DELETE_ARTICLE, payload }),
 });
 
-const ArticlePreview = (props) => {
-  const article = props.article;
-  const favorited = article.favoritedBy.some((u) => u.username === 'foo');
+const ArticlePreview = ({
+  article,
+  favorite,
+  unfavorite,
+  onClickDelete,
+  currentUser,
+}) => {
+  const favorited = article.favoritedBy.some(
+    (u) => u.username === currentUser?.username
+  );
   const favoriteButtonClass = favorited ? FAVORITED_CLASS : NOT_FAVORITED_CLASS;
 
   const handleClick = (event) => {
     event.preventDefault();
     if (favorited) {
-      props.unfavorite(article.id);
+      unfavorite(article.id);
     } else {
-      props.favorite(article.id);
+      favorite(article.id);
     }
   };
 
@@ -45,7 +58,7 @@ const ArticlePreview = (props) => {
   };
 
   const del = (event) => {
-    props.onClickDelete(agent.Articles.del(article.id));
+    onClickDelete(agent.Articles.del(article.id));
   };
 
   return (
@@ -74,15 +87,20 @@ const ArticlePreview = (props) => {
           <h1>{article.title}</h1>
           <p>{article.text}</p>
         </div>
-        <Link
-          className="btn btn-sm btn-outline-primary mr-2"
-          to={`/editor/${article.id}`}
-        >
-          <i className="ion-android-create"></i>
-        </Link>
-        <button className="btn btn-sm btn-outline-danger" onClick={del}>
-          <i className="ion-android-close"></i>
-        </button>
+
+        {article.author.username === currentUser?.username && (
+          <React.Fragment>
+            <Link
+              className="btn btn-sm btn-outline-primary mr-2"
+              to={`/editor/${article.id}`}
+            >
+              <i className="ion-android-create"></i>
+            </Link>
+            <button className="btn btn-sm btn-outline-danger" onClick={del}>
+              <i className="ion-android-close"></i>
+            </button>
+          </React.Fragment>
+        )}
 
         <ul className="tag-list">
           {article.tags.map((tag) => {
@@ -98,4 +116,4 @@ const ArticlePreview = (props) => {
   );
 };
 
-export default connect(() => ({}), mapDispatchToProps)(ArticlePreview);
+export default connect(mapStateToProps, mapDispatchToProps)(ArticlePreview);

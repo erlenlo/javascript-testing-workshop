@@ -6,12 +6,15 @@ import { Route, Switch } from 'react-router';
 import Article from '../components/Article';
 import Editor from '../components/Editor';
 import Home from '../components/Home';
+import { Register } from './Auth/Register';
+import PrivateRoute from './Auth/PrivateRoute';
 
 const mapStateToProps = (state) => {
   return {
     appLoaded: state.common.appLoaded,
     appName: state.common.appName,
     redirectTo: state.common.redirectTo,
+    currentUser: state.common.currentUser,
   };
 };
 
@@ -35,15 +38,16 @@ const App = (props) => {
 
   if (props.appLoaded) {
     return (
-      <div>
+      <React.Fragment>
         <Header appName={props.appName} />
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/editor/:id" component={Editor} />
-          <Route exact path="/editor" component={Editor} />
-          <Route exact path="/article/:id" component={Article} />
+          <PrivateRoute exact path="/" component={Home} />
+          <PrivateRoute exact path="/editor/:id" component={Editor} />
+          <PrivateRoute exact path="/editor" component={Editor} />
+          <PrivateRoute exact path="/article/:id" component={Article} />
+          <Route exact path="/register" component={Register} />
         </Switch>
-      </div>
+      </React.Fragment>
     );
   }
   return (

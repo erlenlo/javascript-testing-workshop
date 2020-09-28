@@ -17,3 +17,24 @@ export const store = createStore(
   reducer(history),
   composeWithDevTools(getMiddleware())
 );
+
+export const getUser = () => {
+  try {
+    const serializedUser = localStorage.getItem('user');
+    if (serializedUser === null) {
+      return null;
+    }
+    return JSON.parse(serializedUser);
+  } catch (error) {
+    return null;
+  }
+};
+
+export const setUser = (user) => {
+  try {
+    const serializedUser = JSON.stringify(user);
+    localStorage.setItem('user', serializedUser);
+  } catch (error) {
+    console.log(error);
+  }
+};
