@@ -6,7 +6,7 @@ import {
 } from '../constants/actionTypes';
 
 const initialState = {
-  appName: 'Scrabbler',
+  appName: 'Sharing Hub',
   viewChangeCounter: 0,
   currentUser: { username: 'foo' },
 };

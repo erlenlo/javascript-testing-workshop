@@ -1,4 +1,4 @@
-const API_ROOT = 'http://localhost:8000';
+const API_ROOT = 'https://testing-js-backend.herokuapp.com';
 
 const encode = encodeURIComponent;
 
