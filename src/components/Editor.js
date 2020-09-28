@@ -1,5 +1,5 @@
 import React from 'react';
-import agent from '../agent';
+import api from '../api';
 import { connect } from 'react-redux';
 import {
   ADD_TAG,
@@ -57,8 +57,8 @@ class Editor extends React.Component {
 
       const id = { id: this.props.id };
       const promise = this.props.id
-        ? agent.Articles.update(Object.assign(article, id))
-        : agent.Articles.create(article);
+        ? api.Articles.update(Object.assign(article, id))
+        : api.Articles.create(article);
 
       this.props.onSubmit(await promise);
     };
@@ -69,7 +69,7 @@ class Editor extends React.Component {
       if (nextProps.match.params.id) {
         this.props.onUnload();
         return this.props.onLoad(
-          await agent.Articles.get(this.props.match.params.id)
+          await api.Articles.get(this.props.match.params.id)
         );
       }
       this.props.onLoad(null);
@@ -79,7 +79,7 @@ class Editor extends React.Component {
   async componentWillMount() {
     if (this.props.match.params.id) {
       return this.props.onLoad(
-        await agent.Articles.get(this.props.match.params.id)
+        await api.Articles.get(this.props.match.params.id)
       );
     }
     this.props.onLoad(null);

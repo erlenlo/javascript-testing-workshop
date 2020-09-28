@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-import agent from '../../agent';
+import api from '../../api';
 import { connect } from 'react-redux';
 import { DELETE_ARTICLE } from '../../constants/actionTypes';
 
@@ -12,7 +12,7 @@ const ArticleActions = (props) => {
   const article = props.article;
 
   const del = async () => {
-    props.onClickDelete(await agent.Articles.del(article.id));
+    props.onClickDelete(await api.Articles.del(article.id));
   };
 
   if (props.canModify) {

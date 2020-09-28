@@ -1,6 +1,6 @@
 import ArticleMeta from './ArticleMeta';
 import React from 'react';
-import agent from '../../agent';
+import api from '../../api';
 import { connect } from 'react-redux';
 import marked from 'marked';
 import {
@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 class Article extends React.Component {
   async componentWillMount() {
-    this.props.onLoad(await agent.Articles.get(this.props.match.params.id));
+    this.props.onLoad(await api.Articles.get(this.props.match.params.id));
   }
 
   componentWillUnmount() {

@@ -2,7 +2,7 @@ import Banner from './Banner';
 import MainView from './MainView';
 import React from 'react';
 import Tags from './Tags';
-import agent from '../../agent';
+import api from '../../api';
 import { connect } from 'react-redux';
 import {
   HOME_PAGE_LOADED,
@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch) => ({
 class Home extends React.Component {
   async componentWillMount() {
     const tab = 'all';
-    const articlesPromise = agent.Articles.all;
+    const articlesPromise = api.Articles.all;
 
     this.props.onLoad(tab, articlesPromise, await articlesPromise());
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import agent from '../agent';
+import api from '../api';
 import { connect } from 'react-redux';
 import { history } from '../store';
 import {
@@ -22,12 +22,12 @@ const mapDispatchToProps = (dispatch) => ({
   favorite: async (id) =>
     dispatch({
       type: ARTICLE_FAVORITED,
-      payload: await agent.Articles.favorite(id),
+      payload: await api.Articles.favorite(id),
     }),
   unfavorite: async (id) =>
     dispatch({
       type: ARTICLE_UNFAVORITED,
-      payload: await agent.Articles.unfavorite(id),
+      payload: await api.Articles.unfavorite(id),
     }),
   onClickDelete: (payload) => dispatch({ type: DELETE_ARTICLE, payload }),
 });
@@ -58,7 +58,7 @@ const ArticlePreview = ({
   };
 
   const del = async (event) => {
-    onClickDelete(await agent.Articles.del(article.id));
+    onClickDelete(await api.Articles.del(article.id));
   };
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import agent from '../agent';
+import api from '../api';
 import { connect } from 'react-redux';
 import { SET_PAGE } from '../constants/actionTypes';
 
@@ -21,7 +21,7 @@ const ListPagination = (props) => {
     if (props.pager) {
       props.onSetPage(page, props.pager(page));
     } else {
-      props.onSetPage(page, agent.Articles.all(page));
+      props.onSetPage(page, api.Articles.all(page));
     }
   };
 

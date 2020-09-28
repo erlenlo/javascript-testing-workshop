@@ -1,13 +1,13 @@
 import ArticleList from '../ArticleList';
 import React from 'react';
-import agent from '../../agent';
+import api from '../../api';
 import { connect } from 'react-redux';
 import { CHANGE_TAB } from '../../constants/actionTypes';
 
 const GlobalFeedTab = (props) => {
-  const clickHandler = (ev) => {
+  const clickHandler = async (ev) => {
     ev.preventDefault();
-    props.onTabClick('all', agent.Articles.all, agent.Articles.all());
+    props.onTabClick('all', api.Articles.all, await api.Articles.all());
   };
   return (
     <li className="nav-item">
