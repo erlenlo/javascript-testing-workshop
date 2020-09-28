@@ -19,15 +19,15 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  favorite: (id) =>
+  favorite: async (id) =>
     dispatch({
       type: ARTICLE_FAVORITED,
-      payload: agent.Articles.favorite(id),
+      payload: await agent.Articles.favorite(id),
     }),
-  unfavorite: (id) =>
+  unfavorite: async (id) =>
     dispatch({
       type: ARTICLE_UNFAVORITED,
-      payload: agent.Articles.unfavorite(id),
+      payload: await agent.Articles.unfavorite(id),
     }),
   onClickDelete: (payload) => dispatch({ type: DELETE_ARTICLE, payload }),
 });
@@ -57,8 +57,8 @@ const ArticlePreview = ({
     history.push(`/article/${article.id}`);
   };
 
-  const del = (event) => {
-    onClickDelete(agent.Articles.del(article.id));
+  const del = async (event) => {
+    onClickDelete(await agent.Articles.del(article.id));
   };
 
   return (

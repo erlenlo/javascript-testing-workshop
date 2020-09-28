@@ -10,9 +10,11 @@ const mapDispatchToProps = (dispatch) => ({
 
 const ArticleActions = (props) => {
   const article = props.article;
-  const del = () => {
-    props.onClickDelete(agent.Articles.del(article.id));
+
+  const del = async () => {
+    props.onClickDelete(await agent.Articles.del(article.id));
   };
+
   if (props.canModify) {
     return (
       <span>

@@ -46,7 +46,7 @@ class Editor extends React.Component {
       this.props.onRemoveTag(tag);
     };
 
-    this.submitForm = (ev) => {
+    this.submitForm = async (ev) => {
       ev.preventDefault();
       const article = {
         title: this.props.title,
@@ -60,25 +60,27 @@ class Editor extends React.Component {
         ? agent.Articles.update(Object.assign(article, id))
         : agent.Articles.create(article);
 
-      this.props.onSubmit(promise);
+      this.props.onSubmit(await promise);
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  async componentWillReceiveProps(nextProps) {
     if (this.props.match.params.id !== nextProps.match.params.id) {
       if (nextProps.match.params.id) {
         this.props.onUnload();
         return this.props.onLoad(
-          agent.Articles.get(this.props.match.params.id)
+          await agent.Articles.get(this.props.match.params.id)
         );
       }
       this.props.onLoad(null);
     }
   }
 
-  componentWillMount() {
+  async componentWillMount() {
     if (this.props.match.params.id) {
-      return this.props.onLoad(agent.Articles.get(this.props.match.params.id));
+      return this.props.onLoad(
+        await agent.Articles.get(this.props.match.params.id)
+      );
     }
     this.props.onLoad(null);
   }

@@ -19,10 +19,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Article extends React.Component {
-  componentWillMount() {
-    this.props.onLoad(
-      Promise.all([agent.Articles.get(this.props.match.params.id)])
-    );
+  async componentWillMount() {
+    this.props.onLoad(await agent.Articles.get(this.props.match.params.id));
   }
 
   componentWillUnmount() {
