@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { SET_CURRENT_USER } from '../../constants/actionTypes';
 
-export const Register = (props) => {
+export const Register = () => {
   const [username, setUsername] = useState('');
 
   const dispatch = useDispatch();
