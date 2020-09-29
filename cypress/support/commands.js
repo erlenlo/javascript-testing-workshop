@@ -27,3 +27,7 @@
 Cypress.Commands.add('getBySel', (selector) => {
   return cy.get(`[data-test="${selector}"]`);
 });
+
+Cypress.Commands.add('logInAsUser', (username) => {
+  cy.findByPlaceholderText('Enter a username').type(username);
+});

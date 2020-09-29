@@ -4,7 +4,7 @@ describe('Cypress', () => {
   it('opens the app', () => {
     cy.visit('/');
 
-    cy.findByPlaceholderText('Enter a username').type('user');
+    cy.logInAsUser('user');
 
     cy.findByText('Register').click();
 
