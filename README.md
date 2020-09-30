@@ -34,7 +34,7 @@ Nå skal nettsiden være tilgjengelig på <a href="http://localhost:4100">http:/
 
 Cypress er et rammeverk for å skrive ende-til-ende-tester i JavaScript. Disse testene simulerer valg en bruker foretar seg og sjekker at man ender opp i forventet tilstand. For eksempel kan Cypress automatisk finne et input-felt på siden, fylle det med tekst og trykke på en submit-knapp. Det gjør Cypress til et ekstremt kraftig verktøy! Cypress er allerede installert i dette prosjektet her og klart til bruk, men for et nytt prosjekt er det ikke verre enn å skrive `npm install --save-dev cypress`.
 
-Fra før av har vi lagt til en Cypress-test. Denne finner du i `cypress/e2e`-mappa. Testen er skrevet riktig, men den feiler! Argg! Din første oppgave er å finne og rette opp i feilen i React-koden, slik at testen blir grønn.
+Fra før av har vi lagt til én Cypress-test. Denne finner du i `cypress/e2e`-mappa. Testen er skrevet riktig, men den feiler! Argg! Din første oppgave er å finne og rette opp i feilen i React-koden, slik at testen blir grønn.
 
 La oss begynne med å kjøre Cypress-testene. For å starte Cypress skriver du
 
@@ -65,13 +65,13 @@ I alle stegene kan du bruke tilfeldige verdier som data. Avslutt testen med å v
 
 **Tips:**
 
-Det er flere mulige måter for å velge et element på siden. Den enkleste måten er å bruke Cypress sitt "selector"-verktøy for å få tak i en css-selektor som identifserer elementet du er interessert i. Denne kan du bruke ved å trykke på knappen "Open Selector Playground" i Cypress-dashboardet, og så kan du gi selektoren til `cy.get("...")`-funksjonen.
+Det er flere mulige måter for å velge et element på siden. Den enkleste måten er å bruke Cypress sitt "selector"-verktøy for å få tak i en css-selektor som identifserer elementet du er interessert i. Denne kan du bruke ved å trykke på knappen "Open Selector Playground" i Cypress-dashboardet, og så kan du gi selektoren du finner til `cy.get("...")`-funksjonen.
 
 Ulempen med denne fremgangsmåten er at du i stor grad tester en implementasjonsdetalj, nemmelig css-navn. Dette gjør at testen svært fort kan knekke når det gjøres kodeendringer som ikke egentlig endrer funksjonaliteten på siden. I stedet vil det som regel være litt bedre å bruke funksjoner som `findByText` og `findByLabelText` (<a href="https://testing-library.com/docs/dom-testing-library/cheatsheet">se oversikt her</a>), som finner et element basert på tekstinnhold og derfor er litt mer semantiske.
 
 &nbsp;
 
-b) Kanskje har du lagt merke til at du nå har to ulike tester som begge var nødt til å begynne med å logge inn, og derfor dupliserer litt kode. Dette er en vanlig utfordring og vi ønsker gjerne å unngå å løse det med å duplisere kode. Cypress lar oss løse dette ved å trekke ut slike gjentatte steg som egne Cypress-kommandoer.
+b) Kanskje har du lagt merke til at du nå har to ulike tester som begge var nødt til å begynne med å logge inn, og derfor dupliserer litt kode. Dette er en vanlig utfordring som vi gjerne ønsker å løse uten å duplisere kode. Cypress lar oss løse dette ved å trekke ut slike gjentatte steg som egne Cypress-kommandoer.
 
 Man kan legge til en egen kommando med navn `skrivLittTekst` ved å legge til følgende kode under `cypress/support/commands.js`:
 
@@ -92,7 +92,7 @@ c) La oss skrive en test for å sjekke at man kan markere en artikkel som favori
 
 **Tips**:
 
-- En utfordring her er å finne favoritt-knappen som hører til riktig artikkel. En mulig løsning på det problemet er å først lete etter artikkelteksten og navigere seg til knappen derfra. Det kan du gjøre ved å først finne tekstelementet, og så bruke `.parent()` for å navigere deg oppover i hierarkiet, fulgt av et nytt `.findBy`-kall for å finne knappen herfra.
+- En utfordring her kan være å finne riktig favoritt-knapp, ettersom det kan finnes flere artikler på siden. En mulig løsning på det problemet er å først lete etter en gitt artikkeltekst og navigere seg til knappen derfra. Det kan du gjøre ved å først finne tekstelementet, og så bruke `.parent()` for å navigere deg oppover i hierarkiet, fulgt av et nytt `.findBy`-kall for å finne knappen herfra.
 - Her legger du nok fort merke til at favoritt-knappen ikke inneholder noe tekst som Cypress kan lete etter. Et alternativ som ofte er litt bedre enn å bruke CSS-selektoren til knappen er å legge til et eget Cypress-attributt på button-komponenten som hjelper oss med å finne den. Hvis du legger til attributtet `data-testid="min-id"` på knappen, kan du få tak i den ved å skrive `cy.findByTestId('min-id'))`.
 - Du kan sjekke om et element har en gitt css-klasse med assert-en `.should('have.class', 'klassenavn')`. <a href="https://docs.cypress.io/guides/references/assertions.html#Common-Assertions">Her er noen eksempler på vanlige assertions.</a>
 
