@@ -69,22 +69,29 @@ b) Kanskje har du lagt merke til at du nå har to ulike tester som begge var nø
 
 Man kan legge til en egen kommando med navn `writeSomeText` ved å legge til følgende kode under `cypress/support/commands.js`:
 
-```
-Cypress.Commands.add('writeSomeText', text => {
-
-	// For eksempel
-	cy.get('.text-input').type(text)
-})
+```js
+Cypress.Commands.add('writeSomeText', (text) => {
+  // For eksempel
+  cy.get('.text-input').type(text);
+});
 ```
 
 Dette gjør `writeSomeText` tilgjengelig i testene ved å f.eks. skrive `cy.visit('/').writeSomeText()`.
 
 Lag en Cypress-kommando for å logge inn med et gitt brukernavn og ta den i bruk i de to eksisterende testene.
 
+c) La oss skrive en test for å sjekke at man kan markere en artikkel som favoritt. En god test bør sørge for å laste siden på nytt etter markering, så du er sikker på at effekten av handlingen er persistent og ikke kun er registrert i frontend-en.
+
+**Tips**:
+
+- En utfordring her er å finne favoritt-knappen som hører til riktig artikkel. En mulig løsning på det problemet er å først lete etter artikkelteksten og navigere seg til knappen derfra. Det kan du gjøre ved å først finne tekstelementet, og så bruke `.parent()` for å navigere deg oppover i hierarkiet, fulgt av et nytt `.findBy`-kall for å finne knappen herfra.
+- Her legger du nok fort merke til at favoritt-knappen ikke inneholder noe tekst som Cypress kan lete etter. Et alternativ som ofte er litt bedre enn å bruke CSS-selektoren til knappen er å legge til et eget Cypress-attributt på button-komponenten som hjelper oss med å finne den. Hvis du legger til attributtet `data-testid="min-id"`, kan du få tak i knappen ved å skrive `cy.findByTestId('min-id'))`.
+- Du kan sjekke om et element har en gitt css-klasse med assert-en `.should('have.class', 'klassenavn')`. <a href="https://docs.cypress.io/guides/references/assertions.html#Common-Assertions">Her er noen eksempler på vanlige assertions.</a>
+
 ## Oppgave 3
 
-... Unit testing med Jest
+Mocking...
 
 ## Oppgave 4
 
-... Mer viderekommende Cypress-oppgaver; noe mot api; mocking?
+Hvis du har kommet deg helt til oppgave 4 er vi imponert! Godt jobbet! I denne oppgaven skal du få fritt spillerom. Her skal du legge til en test eller to for noe som du synes det er lurt å teste. Eventuelt, hvis det er noe funksjonalitet i Cypress som du har lyst å prøve ut kan du gjøre det nå.

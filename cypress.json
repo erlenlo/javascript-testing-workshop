@@ -1,4 +1,5 @@
 {
   "baseUrl": "http://localhost:4100/",
-  "integrationFolder": "cypress/e2e"
+  "integrationFolder": "cypress/e2e",
+  "experimentalFetchPolyfill": true
 }
