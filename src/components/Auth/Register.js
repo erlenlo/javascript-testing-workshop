@@ -28,7 +28,7 @@ export const Register = () => {
         </fieldset>
         <button
           className="btn btn-lg pull-xs-right btn-primary w-100"
-          disabled={username.length < 3}
+          disabled={username.length > 0}
         >
           Register
         </button>
