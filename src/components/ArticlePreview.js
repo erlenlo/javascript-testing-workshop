@@ -74,7 +74,11 @@ const ArticlePreview = ({
         </div>
 
         <div className="pull-xs-right">
-          <button className={favoriteButtonClass} onClick={handleClick}>
+          <button
+            className={favoriteButtonClass}
+            onClick={handleClick}
+            data-testid="like-button"
+          >
             <i className="ion-heart"></i> {article.favoritedBy?.length}
           </button>
         </div>
