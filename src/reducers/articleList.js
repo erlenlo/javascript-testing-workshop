@@ -4,7 +4,6 @@ import {
   SET_PAGE,
   APPLY_TAG_FILTER,
   HOME_PAGE_LOADED,
-  HOME_PAGE_UNLOADED,
   DELETE_ARTICLE,
 } from '../constants/actionTypes';
 
@@ -53,8 +52,6 @@ export default (state = initialState, action) => {
         articlesCount: action.payload.length,
         tab: action.tab,
       };
-    case HOME_PAGE_UNLOADED:
-      return {};
     case DELETE_ARTICLE:
       return {
         ...state,

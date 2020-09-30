@@ -3,7 +3,8 @@ import {
   REDIRECT,
   ARTICLE_SUBMITTED,
   DELETE_ARTICLE,
-  SET_CURRENT_USER,
+  LOGIN,
+  LOGOUT,
 } from '../constants/actionTypes';
 import { getUser, setUser } from '../store';
 
@@ -23,10 +24,13 @@ export default (state = initialState, action) => {
       };
     case REDIRECT:
       return { ...state, redirectTo: null };
-    case SET_CURRENT_USER:
+    case LOGIN:
       const user = { username: action.payload };
       setUser(user);
       return { ...state, currentUser: user, redirectTo: '/' };
+    case LOGOUT:
+      setUser(null);
+      return { ...state, currentUser: null, redirectTo: '/register' };
     case ARTICLE_SUBMITTED:
       return { ...state, redirectTo: '/' };
     case DELETE_ARTICLE:

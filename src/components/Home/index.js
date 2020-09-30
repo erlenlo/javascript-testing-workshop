@@ -6,7 +6,6 @@ import api from '../../api';
 import { connect } from 'react-redux';
 import {
   HOME_PAGE_LOADED,
-  HOME_PAGE_UNLOADED,
   APPLY_TAG_FILTER,
 } from '../../constants/actionTypes';
 import { Link } from 'react-router-dom';
@@ -20,17 +19,12 @@ const mapDispatchToProps = (dispatch) => ({
   onClickTag: (tag, payload) =>
     dispatch({ type: APPLY_TAG_FILTER, tag, payload }),
   onLoad: (tab, payload) => dispatch({ type: HOME_PAGE_LOADED, tab, payload }),
-  onUnload: () => dispatch({ type: HOME_PAGE_UNLOADED }),
 });
 
 class Home extends React.Component {
   async componentDidMount() {
     const tab = 'all';
     this.props.onLoad(tab, await api.Articles.all());
-  }
-
-  componentWillUnmount() {
-    this.props.onUnload();
   }
 
   render() {

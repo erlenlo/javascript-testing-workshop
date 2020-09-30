@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { SET_CURRENT_USER } from '../../constants/actionTypes';
+import { LOGIN } from '../../constants/actionTypes';
 
 export const Register = () => {
   const [username, setUsername] = useState('');
@@ -9,7 +9,7 @@ export const Register = () => {
 
   const register = (event) => {
     event.preventDefault();
-    dispatch({ type: SET_CURRENT_USER, payload: username });
+    dispatch({ type: LOGIN, payload: username });
   };
 
   return (

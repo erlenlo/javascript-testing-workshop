@@ -22,7 +22,7 @@ const ListPagination = ({
   }
 
   const pages = [];
-  for (let i = 1; i < Math.ceil(articlesCount / 1) + 1; ++i) {
+  for (let i = 1; i < Math.ceil(articlesCount / pageSize) + 1; ++i) {
     pages.push(i);
   }
 
