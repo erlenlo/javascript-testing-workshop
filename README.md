@@ -52,7 +52,7 @@ For å finne ut hva som er galt i koden er det lurt å begynne med å kikke på 
 
 I denne oppgaven skal du skrive egne Cypress-tester.
 
-a)
+### a)
 
 Det første vi vil teste er at det skal gå an å publisere en ny artikkel. Denne testen skal simulere følgende løp:
 
@@ -71,7 +71,9 @@ Ulempen med denne fremgangsmåten er at du i stor grad tester en implementasjons
 
 &nbsp;
 
-b) Kanskje har du lagt merke til at du nå har to ulike tester som begge var nødt til å begynne med å logge inn, og derfor dupliserer litt kode. Dette er en vanlig utfordring som vi gjerne ønsker å løse uten å duplisere kode. Cypress lar oss løse dette ved å trekke ut slike gjentatte steg som egne Cypress-kommandoer.
+### b)
+
+Kanskje har du lagt merke til at du nå har to ulike tester som begge var nødt til å begynne med å logge inn, og derfor dupliserer litt kode. Dette er en vanlig utfordring som vi gjerne ønsker å løse uten å duplisere kode. Cypress lar oss løse dette ved å trekke ut slike gjentatte steg som egne Cypress-kommandoer.
 
 Man kan legge til en egen kommando med navn `skrivLittTekst` ved å legge til følgende kode under `cypress/support/commands.js`:
 
@@ -88,7 +90,9 @@ Lag en Cypress-kommando for å logge inn med et gitt brukernavn og ta den i bruk
 
 &nbsp;
 
-c) La oss skrive en test for å sjekke at man kan markere en artikkel som favoritt. En god test bør sørge for å laste siden på nytt etter markeringen, så du er sikker på at effekten av handlingen er persistent og ikke kun er registrert i frontend-en.
+### c)
+
+La oss skrive en test for å sjekke at man kan markere en artikkel som favoritt. En god test bør sørge for å laste siden på nytt etter markeringen, så du er sikker på at effekten av handlingen er persistent og ikke kun er registrert i frontend-en.
 
 **Tips**:
 
