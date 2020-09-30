@@ -1,19 +1,21 @@
-import { Request, Response } from "express";
-import { Article, Tag } from "../domain";
-import { validateArticle } from "./validation";
+import { Request, Response } from 'express';
+import { Article, Tag } from '../domain';
+import { validateArticle } from './validation';
 const MAX_ARTICLES = 100;
 
 let id = 0;
 const articles: Article[] = [];
 
 const getAllArticles = (req: Request, res: Response): void => {
-  const tag = req.params.tag as Tag | undefined;
+  const tag = req.query.tag as Tag | undefined;
 
-  const response = tag
+  const hits = tag
     ? articles.filter((art) => art.tags.includes(tag))
-    : articles;
+    : [...articles];
 
-  res.send(response);
+  hits.sort((a, b) => -(a.createdAt.valueOf() - b.createdAt.valueOf()));
+
+  res.send(hits);
 };
 
 const getArticle = (req: Request, res: Response): void =>
@@ -78,7 +80,7 @@ const unfavorite = (req: Request, res: Response): void =>
       article.favoritedBy.splice(index, 1);
       res.send(article);
     } else {
-      res.status(400).send("Article not favorited by user");
+      res.status(400).send('Article not favorited by user');
     }
   });
 
@@ -98,7 +100,7 @@ const deleteArticle = (req: Request, res: Response): void =>
 
 const username = (req: Request): string => {
   if (!req.headers.authorization) {
-    throw new Error("Expected user to be authorized at this point");
+    throw new Error('Expected user to be authorized at this point');
   }
   return req.headers.authorization;
 };
@@ -111,7 +113,7 @@ const withArticle = (
   const article = articles.find((art) => art.id === id);
 
   if (article) consume(article);
-  else res.status(404).send("Article not found");
+  else res.status(404).send('Article not found');
 };
 
 export default {
