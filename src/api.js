@@ -68,10 +68,6 @@ const requests = {
     }).then(handleResponse),
 };
 
-const Tags = {
-  getAll: () => requests.get('/tags'),
-};
-
 const Articles = {
   all: () => requests.get(`/articles`),
   byTag: (tag) => requests.get(`/articles?tag=${encode(tag)}`),
@@ -85,5 +81,4 @@ const Articles = {
 
 export default {
   Articles,
-  Tags,
 };

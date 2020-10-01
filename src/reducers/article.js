@@ -3,7 +3,11 @@ import {
   ARTICLE_PAGE_UNLOADED,
 } from '../constants/actionTypes';
 
-export default (state = {}, action) => {
+const initialState = {
+  article: null,
+};
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case ARTICLE_PAGE_LOADED:
       return {
@@ -11,7 +15,7 @@ export default (state = {}, action) => {
         article: action.payload,
       };
     case ARTICLE_PAGE_UNLOADED:
-      return {};
+      return { ...initialState };
     default:
       return state;
   }

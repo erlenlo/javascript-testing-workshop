@@ -2,7 +2,6 @@ import {
   ARTICLE_FAVORITED,
   ARTICLE_UNFAVORITED,
   SET_PAGE,
-  APPLY_TAG_FILTER,
   HOME_PAGE_LOADED,
   DELETE_ARTICLE,
 } from '../constants/actionTypes';
@@ -35,19 +34,9 @@ export default (state = initialState, action) => {
         ...state,
         currentPage: action.page,
       };
-    case APPLY_TAG_FILTER:
-      return {
-        ...state,
-        articles: action.payload,
-        articlesCount: action.payload.length,
-        tab: null,
-        tag: action.tag,
-        currentPage: 1,
-      };
     case HOME_PAGE_LOADED:
       return {
         ...state,
-        tags: [],
         articles: action.payload,
         articlesCount: action.payload.length,
         tab: action.tab,

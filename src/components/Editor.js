@@ -64,19 +64,7 @@ class Editor extends React.Component {
     };
   }
 
-  async UNSAFE_componentWillReceiveProps(nextProps) {
-    if (this.props.match.params.id !== nextProps.match.params.id) {
-      if (nextProps.match.params.id) {
-        this.props.onUnload();
-        return this.props.onLoad(
-          await api.Articles.get(this.props.match.params.id)
-        );
-      }
-      this.props.onLoad(null);
-    }
-  }
-
-  async UNSAFE_componentWillMount() {
+  async componentDidMount() {
     if (this.props.match.params.id) {
       return this.props.onLoad(
         await api.Articles.get(this.props.match.params.id)

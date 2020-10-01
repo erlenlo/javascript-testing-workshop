@@ -6,7 +6,6 @@ export const ARTICLE_FAVORITED = 'ARTICLE_FAVORITED';
 export const ARTICLE_UNFAVORITED = 'ARTICLE_UNFAVORITED';
 export const ADD_TAG = 'ADD_TAG';
 export const REMOVE_TAG = 'REMOVE_TAG';
-export const APPLY_TAG_FILTER = 'APPLY_TAG_FILTER';
 export const SET_PAGE = 'SET_PAGE';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
