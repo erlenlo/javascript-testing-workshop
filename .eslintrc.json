@@ -1,8 +1,7 @@
 {
   "env": {
     "es6": true,
-    "browser": true,
-    "cypress/globals": true
+    "browser": true
   },
   "extends": [
     "eslint:recommended",
@@ -20,7 +19,7 @@
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
-  "plugins": ["react", "eslint-plugin-cypress", "eslint-plugin-jest"],
+  "plugins": ["react", "eslint-plugin-jest"],
   "rules": {
     "react/prop-types": "off",
     "react-hooks/exhaustive-deps": "off",

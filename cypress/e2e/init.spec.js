@@ -1,10 +1,13 @@
 import '@testing-library/cypress/add-commands';
-import { lorem } from './util';
 
 // lorem kan brukes til å generere tilfeldig tekst.
 //
 // lorem.generateWords(1)
 // lorem.generateSentences(2)
+//
+// NB! Dette er ikke noe som følger med Cypress, men vi har satt opp disse
+// hjelpefunksjonene i /cypress/support/* slik at de er tilgjengelig for alle
+// Cypress-testene i dette prosjektet
 
 const username = 'J.K. Rowling';
 
