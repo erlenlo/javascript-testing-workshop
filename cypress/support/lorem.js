@@ -1,5 +1,4 @@
 import { LoremIpsum } from 'lorem-ipsum';
-// const LoremIpsum = require("lorem-ipsum").LoremIpsum;
 
 export const lorem = new LoremIpsum({
   sentencesPerParagraph: {

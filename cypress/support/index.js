@@ -18,3 +18,7 @@ import './commands';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+// eslint-disable-next-line no-unused-vars
+import { lorem } from './lorem';
+global.lorem = lorem;
